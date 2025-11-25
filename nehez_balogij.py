@@ -14,14 +14,14 @@ for _ in range(3):
         try:
             fajnev = input("Add meg egy állatfaj nevét:")
             szoveg = True
-        except:
+        except Exception:
             print("Ez nem szöveg!")
 
     while(not szam):
         try:
             tomeg = int(input("Add meg az állatfaj tömegét:"))
             szam = True
-        except:
+        except ValueError:
             print("Ez nem szám!")
     
     allat = Allatfaj(fajnev, tomeg)
