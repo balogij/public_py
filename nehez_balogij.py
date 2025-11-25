@@ -1,32 +1,40 @@
 class Allatfaj:
-    def __init__(self,fajnev,tomeg):
+
+    def __init__(self, fajnev, tomeg):
         self.fajnev = fajnev
         self.tomeg = tomeg
+
 
 #main
 allatfajok = []
 for _ in range(3):
-    szoveg = False
-    szam = False
+    hiba = False
     fajnev = ""
     tomeg = 0
-    while(not szoveg):
+    while (not hiba):
         try:
-            fajnev = input("Add meg egy állatfaj nevét:")
-            szoveg = True
-        except Exception:
+            fajnev = input("Add meg egy állatfaj nevét!")
+            hiba = True
+        except ValueError:
             print("Ez nem szöveg!")
 
-    while(not szam):
+    hiba = False
+    while (not hiba):
         try:
-            tomeg = int(input("Add meg az állatfaj tömegét:"))
-            szam = True
+            tomeg = int(input("Hány kilogramm a tömege egy példánynak?"))
+            hiba = True
         except ValueError:
             print("Ez nem szám!")
-    
+
     allat = Allatfaj(fajnev, tomeg)
     allatfajok.append(allat)
 
 max_ind = len(allatfajok)
+lehnehezebballat = allatfajok[0]
 for i in range(max_ind):
-    print(f"Állatfaj: {allatfajok[i].fajnev}, Tömeg: {allatfajok[i].tomeg}")
+    if allatfajok[i].tomeg > lehnehezebballat.tomeg:
+        lehnehezebballat = allatfajok[i]
+
+print(f"A(z) {lehnehezebballat.fajnev}, a legnehezebb")
+target_file = open("legnehezebb.txt", "w")
+print(f"A(z) {lehnehezebballat.fajnev}, a legnehezebb", file=target_file)
