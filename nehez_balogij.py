@@ -8,22 +8,25 @@ allatfajok = []
 for _ in range(3):
     szoveg = False
     szam = False
-    allat = Allatfaj
+    fajnev = ""
+    tomeg = 0
     while(not szoveg):
         try:
-            allat.fajnev = input("Add meg egy állatfaj nevét:")
+            fajnev = input("Add meg egy állatfaj nevét:")
             szoveg = True
         except:
             print("Ez nem szöveg!")
 
     while(not szam):
         try:
-            allat.tomeg = input("Add meg egy állatfaj nevét:")
+            tomeg = int(input("Add meg az állatfaj tömegét:"))
             szam = True
         except:
             print("Ez nem szám!")
-            
+    
+    allat = Allatfaj(fajnev, tomeg)
     allatfajok.append(allat)
+
 max_ind = len(allatfajok)
 for i in range(max_ind):
-    print(allatfajok[i])
+    print(f"Állatfaj: {allatfajok[i].fajnev}, Tömeg: {allatfajok[i].tomeg}")
