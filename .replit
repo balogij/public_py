@@ -15,15 +15,15 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Run Python CLI App"
+args = "Gravity Simulation"
 
 [[workflows.workflow]]
-name = "Run Python CLI App"
+name = "Gravity Simulation"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python nehez_balogij.py"
+args = "python gravity.py"
 
 [workflows.workflow.metadata]
-outputType = "console"
+outputType = "vnc"
