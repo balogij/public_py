@@ -6,7 +6,7 @@ import math
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 800
 NUM_BODIES = 8 # Több test
-G = 0.5        # Gravitációs állandó
+G = 0.67        # Gravitációs állandó
 TIME_STEP = 0.05 # Időlépés (dt)
 BACKGROUND_COLOR = (10, 10, 30)
 COLLISION_ELASTICITY = 0.9 # Rugalmassági együttható ütközéskor (0-1 között)
