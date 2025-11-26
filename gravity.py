@@ -5,7 +5,7 @@ import math
 # --- Beállítások ---
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 800
-NUM_BODIES = 30  # Több test
+NUM_BODIES = 100  # Több test
 G = 0.67  # Gravitációs állandó
 TIME_STEP = 0.5  # Időlépés (dt)
 BACKGROUND_COLOR = (10, 10, 30)
@@ -147,28 +147,32 @@ def check_collisions(_bodies):
                         (absorber.color[2] + absorbed.color[2]) // 2)
 
                     new_body = Body(absorbed.position.x, absorbed.position.y, absorbed.mass, absorbed.color, absorbed.radius)
-                    new_body.mass = absorbed.mass / 4
+                    new_body.mass = absorbed.mass
                     new_body.radius = int(math.sqrt(new_body.mass))
                     new_body.velocity = absorbed.velocity.rotate(30)
                     new_body.position.x = new_body.position.x + new_body.velocity.x*2
                     new_body.position.y = new_body.position.y + new_body.velocity.y*2
                     color_val = 50 + int(new_body.mass * 4)
+                    if color_val > 255:
+                        color_val = 255
                     new_body.color = (color_val, color_val,
                                       255 - color_val)
                     new_body.alive = True
-                    _bodies.append(new_body)
+                    bodies.append(new_body)
 
                     new_body = Body(absorbed.position.x, absorbed.position.y, absorbed.mass, absorbed.color, absorbed.radius)
-                    new_body.mass = absorbed.mass / 4
+                    new_body.mass = absorbed.mass
                     new_body.radius = int(math.sqrt(new_body.mass))
                     new_body.velocity = absorbed.velocity.rotate(-30)
                     new_body.position.x = new_body.position.x + new_body.velocity.x*2
                     new_body.position.y = new_body.position.y + new_body.velocity.y*2
                     color_val = 50 + int(new_body.mass * 4)
+                    if color_val > 255:
+                        color_val = 255
                     new_body.color = (color_val, color_val,
                                       255 - color_val)
                     new_body.alive = True
-                    _bodies.append(new_body)
+                    bodies.append(new_body)
                     
                     #bodiesCount = len(_bodies)
                 else:
@@ -200,6 +204,7 @@ def main():
     clock = pygame.time.Clock()
 
     # --- Testek inicializálása ---
+    global bodies
     bodies = []
 
     for i in range(NUM_BODIES):
